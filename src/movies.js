@@ -36,7 +36,7 @@ const movieList = [
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
 function getAllDirectors(moviesArray) {
-    const directorsArray = moviesArray.map(movie => movie.director);
+    const directorsArray = moviesArray.map(movie => movie.director)
     return directorsArray;
 }
 console.log(getAllDirectors(movieList));
@@ -47,21 +47,18 @@ function howManyMovies(moviesArray) {
         return 0; 
     }
     else {
-        const spielbergMoviesArray = moviesArray.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama"));
-        return spielbergMoviesArray.length;
+        const spielbergDramaMoviesArray = moviesArray.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama"));
+        return spielbergDramaMoviesArray.length;
     }
 }
 
-console.log(howManyMovies(movieList));
-
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
- 
  function scoresAverage(moviesArray) {
      if (moviesArray.length === 0) {
          return 0; 
      }
      const scoresTotal = moviesArray.reduce((accumulator, movie) => {
-         if (Object.hasOwn(movie, 'score')) {
+         if (Object.hasOwn(movie, 'score')) { // if (movie.score)
              return accumulator + movie.score;
          }
          else {
@@ -69,10 +66,8 @@ console.log(howManyMovies(movieList));
          }
      }, 0);
      const scoresAvg = scoresTotal/moviesArray.length;
-     return parseFloat((scoresAvg).toFixed(2)); 
+     return parseFloat(scoresAvg.toFixed(2)); 
  }
-
-console.log(scoresAverage(movieList));
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
@@ -104,7 +99,7 @@ function orderByYear(moviesArray) {
     }, )
     return moviesArraySortedChrono; 
 }
-console.log (orderByYear(movieList))
+
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
     const moviesArraySortedAlphabet = moviesArray.toSorted((a, b) => {
@@ -120,18 +115,21 @@ function orderAlphabetically(moviesArray) {
     }, )
     let movieTitleAlphabetArray = []; 
     for (i = 0; i < 20; i++) {
-       if (moviesArraySortedAlphabet[i]) {
-        movieTitleAlphabetArray.push(moviesArraySortedAlphabet[i].title);
-       }
-       else {
-        break;
+        if (moviesArraySortedAlphabet[i]) {
+            movieTitleAlphabetArray.push(moviesArraySortedAlphabet[i].title);
         }
     }
     return movieTitleAlphabetArray; 
 }
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
-function turnHoursToMinutes(moviesArray) {}
+function turnHoursToMinutes(moviesArray) {
+    moviesCopy = [...moviesArray];
+    moviesCopy.forEach((movie) => {
+       let hour = movie.duration[0]
+
+    }, )
+}
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {}
