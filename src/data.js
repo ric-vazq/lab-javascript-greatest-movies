@@ -2001,3 +2001,38 @@ const movies = [
     score: 8
   }
 ];
+
+const yearSort = movies.sort((a, b) => a.year - b.year); 
+console.log(yearSort[0]);
+console.log (yearSort[yearSort.length-1]);
+function scoresAverage(moviesArray) {
+  if (moviesArray.length === 0) {
+      return 0; 
+  }
+  const scoresTotal = moviesArray.reduce((accumulator, movie) => {
+      if (Object.hasOwn(movie, 'score')) { // if (movie.score)
+          return accumulator + movie.score;
+      }
+      else {
+          return accumulator
+      }
+  }, 0);
+  const scoresAvg = scoresTotal/moviesArray.length;
+  return parseFloat(scoresAvg.toFixed(2)); 
+}
+
+function bestYearAvg(moviesArray) {
+  let bestScore = 0;
+  let bestYear = 0;
+  for (i = 0; i < 97; i++) {
+      let moviesByYear = moviesArray.filter(movie => movie.year === 1921 + i)
+      let yearlyScore = scoresAverage(moviesByYear); 
+      if (yearlyScore > bestScore) {
+          bestScore = yearlyScore;
+          bestYear = 1921 + i;
+      }
+  }
+  return `The best year was ${bestYear} with an average score of ${bestYear}`
+}
+
+bestYearAvg(movies);
